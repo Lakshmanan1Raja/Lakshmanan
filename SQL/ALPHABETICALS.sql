@@ -1,0 +1,132 @@
+USE TRANSACTIONS
+
+DECLARE @A INT
+SET @A=202
+IF
+@A>100
+BEGIN
+   PRINT CAST(@A AS VARCHAR(20))+' IS A BIGGER'
+ END
+
+
+ DECLARE @B INT 
+ SET @B=101
+ IF 
+   @B>100
+   BEGIN 
+     PRINT CAST(@B AS VARCHAR(20))+' IS A BIGGER'
+	 END
+
+
+DECLARE @M INT,
+        @N INT,
+		@RESULT INT 
+SET @M=30
+SET @N=20
+
+
+IF 
+   @M<@N OR @M=@N
+    BEGIN
+	 SELECT    @RESULT =@M+@N
+	 END
+ELSE
+     BEGIN
+       SELECT  @RESULT=@M-@N
+     END
+PRINT @RESULT 
+
+
+
+IF SCORE IS > 90 GRADE A
+IF BETWEEN 70 TO 89 GRADE B
+
+ELSE C
+
+DECLARE @score INT;
+SET @score =  75;
+
+SELECT 
+    CASE
+        WHEN @score > 90 THEN 'A'
+        WHEN @score BETWEEN 70 AND 89 THEN 'B'
+        ELSE 'C'
+    END AS Grade;
+
+
+
+
+	--- PRINT ALPHABETIS ----
+
+     declare @S int=1
+   declare @str1 varchar(100)=('abcdef')
+   declare @str2 varchar(100)=''
+   declare @length INT=len(@str1)
+   while (@S<@length)
+    BEGIN 
+	 IF (SUBSTRING(@str1,@S,1)=' ')
+	 BEGIN
+	  PRINT @STR2
+	  END
+	  ELSE 
+	    BEGIN 
+		 SET @str2=@str2+SUBSTRING(@str1,@S,1)
+		PRINT @STR2
+        END 
+		SET @S=@S+1
+		END
+
+with alphabetic
+as
+(
+  select 'ABCDEFGHI' AS LETTERS
+  UNION ALL
+  SELECT LEFT(LETTERS,LEN(LETTERS)-1)
+  FROM alphabetic
+  WHERE LEN(LETTERS)>1
+)
+SELECT LETTERS FROM alphabetic
+
+DECLARE @ALPHABETIC VARCHAR(50)='ABCDEF'
+DECLARE @LENTHS INT=LEN(@ALPHABETIC)
+DECLARE @DECLARE INT =@LENTHS
+
+WHILE @DECLARE>=1
+   BEGIN
+    PRINT SUBSTRING(@ALPHABETIC,1,@DECLARE)
+	SET @DECLARE=@DECLARE-1
+	END
+
+
+
+
+
+
+	---- print a1 a2 a3,--
+with cte_printabc
+as
+(
+select ASCII('A') as n
+union all
+select n+1 from cte_printabc
+where n<ASCII('Z')
+)
+select CHAR(N)+'1'AS A,CHAR(N)+'2' B,CHAR(N)+'3' C,CHAR(N)+'4' D,CHAR(N)+'5' E,CHAR(N)+'6' F,CHAR(N)+'7' G FROM cte_printabc
+
+	-- STRING AGGREGATE FUNCTIONS FOR SEPERATE AND ARRANGE WITH ALPHABETS ---
+	CREATE TABLE NAMELIST(NAMES VARCHAR(20))
+
+	INSERT INTO NAMELIST VALUES ('AVINASH'),('ANANDA'),('BHOOMI'),('BHUVANA'),('CHANDRA')
+	,('KARTHIK'),('KARUNA'),('MAHESH'),('ARUN'),('PALLAVI'),('PADMASHREE'),('KIRAN'),('SACHIN'),('VAISHNAVI')
+
+	SELECT LEFT(NAMES,1)ALPHABETS,STRING_AGG(NAMES,',') WITHIN GROUP( ORDER BY NAMES)NAMES
+	FROM NAMELIST
+	GROUP BY LEFT(NAMES,1)
+	ORDER BY NAMES
+
+
+
+
+
+
+
